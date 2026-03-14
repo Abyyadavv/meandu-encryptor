@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MEandU</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#060b10">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="shortcut icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+<link rel="stylesheet" href="style.css?v=2">
+
+</head>
+
+<body>
+
+<h2 class="app-title">🔐 MEandU 🔐</h2>
+
+<div class="app-layout">
+<main class="tool-panel">
+<div class="input-side">
+<h3>Message</h3>
+<textarea id="message" placeholder="Enter message or encrypted text"></textarea><br>
+<input type="password" id="password" placeholder="Enter password"><br>
+<div class="btn-row">
+<button class="action-btn encrypt-btn" onclick="encryptMessage()">Encrypt</button>
+<button class="action-btn decrypt-btn" onclick="decryptMessage()">Decrypt</button>
+</div>
+</div>
+
+<div class="result-side">
+<h3>Result</h3>
+<textarea id="result" readonly></textarea>
+<br>
+<button id="copy-btn" onclick="copyEncryptedMessage()">Copy Encrypted</button>
+</div>
+</main>
+</div>
+
+<aside class="how-it-works">
+<h3>How it works</h3>
+<ol>
+<li>Message likho aur password daal kar <strong>Encrypt</strong> dabao.</li>
+<li>Result box ka encrypted text <strong>Copy Encrypted</strong> se copy karo.</li>
+<li>Copy ke baad fields security ke liye reset ho jaati hain.</li>
+<li>Decrypt ke liye encrypted text paste karo, password daalo, phir <strong>Decrypt</strong>.</li>
+</ol>
+</aside>
+
+<footer class="app-footer">
+<div>© 2026 Abyyadavv. All rights reserved.</div>
+<div class="footer-links">
+<a class="github-link" href="https://github.com/Abyyadavv" target="_blank" rel="noopener noreferrer">GitHub</a>
+<a class="linkedin-link" href="https://www.linkedin.com/in/abyyadavv" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+<a class="instagram-link" href="https://www.instagram.com/abyyadavv" target="_blank" rel="noopener noreferrer">Instagram</a>
+</div>
+</footer>
+<script src="script.js?v=2"></script>
+
+</body>
+</html>

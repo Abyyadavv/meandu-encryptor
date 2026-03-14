@@ -1,0 +1,36 @@
+{
+  "name": "MEandU",
+  "short_name": "MEandU",
+  "description": "Secure message encryption and decryption app",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#060b10",
+  "theme_color": "#060b10",
+  "screenshots": [
+    {
+      "src": "screenshots/home.png",
+      "sizes": "1905x900",
+      "type": "image/png",
+      "label": "Home screen"
+    },
+    {
+      "src": "screenshots/Encrypted_Result.png",
+      "sizes": "1899x911",
+      "type": "image/png",
+      "label": "Encrypted result screen"
+    }
+  ],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
