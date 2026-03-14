@@ -1,9 +1,9 @@
-const CACHE_NAME = "meandu-v2";
+const CACHE_NAME = "meandu-v3";
 const ASSETS = [
   "./",
   "./index.html",
-  "./style.css?v=2",
-  "./script.js?v=2",
+  "./style.css?v=3",
+  "./script.js?v=3",
   "./manifest.webmanifest",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
@@ -37,20 +37,42 @@ self.addEventListener("activate", function(event){
 });
 
 self.addEventListener("fetch", function(event){
+  const request = event.request;
+  const isHtmlRequest = request.mode === "navigate" || (request.headers.get("accept") || "").includes("text/html");
+
+  if (isHtmlRequest) {
+    event.respondWith(
+      fetch(request)
+        .then(function(networkResponse){
+          const responseClone = networkResponse.clone();
+          caches.open(CACHE_NAME).then(function(cache){
+            cache.put(request, responseClone);
+          });
+          return networkResponse;
+        })
+        .catch(function(){
+          return caches.match(request).then(function(cachedResponse){
+            return cachedResponse || caches.match("./index.html");
+          });
+        })
+    );
+    return;
+  }
+
   event.respondWith(
-    caches.match(event.request).then(function(cachedResponse){
+    caches.match(request).then(function(cachedResponse){
       if(cachedResponse){
         return cachedResponse;
       }
 
-      return fetch(event.request).then(function(networkResponse){
+      return fetch(request).then(function(networkResponse){
         if(!networkResponse || networkResponse.status !== 200 || networkResponse.type === "opaque"){
           return networkResponse;
         }
 
         const responseClone = networkResponse.clone();
         caches.open(CACHE_NAME).then(function(cache){
-          cache.put(event.request, responseClone);
+          cache.put(request, responseClone);
         });
 
         return networkResponse;
